@@ -1,0 +1,6 @@
+D:\shivangi\WCF\EmployeeManagementService\Client\bin\Debug\Client.exe.config
+D:\shivangi\WCF\EmployeeManagementService\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+D:\shivangi\WCF\EmployeeManagementService\Client\bin\Debug\Client.exe
+D:\shivangi\WCF\EmployeeManagementService\Client\bin\Debug\Client.pdb
+D:\shivangi\WCF\EmployeeManagementService\Client\obj\Debug\Client.exe
+D:\shivangi\WCF\EmployeeManagementService\Client\obj\Debug\Client.pdb
