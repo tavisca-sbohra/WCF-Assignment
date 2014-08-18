@@ -1,0 +1,6 @@
+D:\shivangi\WCF\EmployeeManagementService\Test\bin\Debug\Test.dll.config
+D:\shivangi\WCF\EmployeeManagementService\Test\bin\Debug\Test.dll
+D:\shivangi\WCF\EmployeeManagementService\Test\bin\Debug\Test.pdb
+D:\shivangi\WCF\EmployeeManagementService\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+D:\shivangi\WCF\EmployeeManagementService\Test\obj\Debug\Test.dll
+D:\shivangi\WCF\EmployeeManagementService\Test\obj\Debug\Test.pdb

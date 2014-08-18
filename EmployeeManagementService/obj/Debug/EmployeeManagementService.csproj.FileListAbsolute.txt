@@ -1,0 +1,5 @@
+D:\shivangi\WCF\EmployeeManagementService\EmployeeManagementService\bin\EmployeeManagementService.dll
+D:\shivangi\WCF\EmployeeManagementService\EmployeeManagementService\bin\EmployeeManagementService.pdb
+D:\shivangi\WCF\EmployeeManagementService\EmployeeManagementService\obj\Debug\EmployeeManagementService.csprojResolveAssemblyReference.cache
+D:\shivangi\WCF\EmployeeManagementService\EmployeeManagementService\obj\Debug\EmployeeManagementService.dll
+D:\shivangi\WCF\EmployeeManagementService\EmployeeManagementService\obj\Debug\EmployeeManagementService.pdb
