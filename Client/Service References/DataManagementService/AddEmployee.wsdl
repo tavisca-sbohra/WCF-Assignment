@@ -344,6 +344,44 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IGetEmployeeDetails_EmployeeDetailsByName_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IGetEmployeeDetails_EmployeeDetailsByName_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSHttpBinding_IGetEmployeeDetails_GetRemark_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -451,6 +489,12 @@
   <wsdl:message name="IGetEmployeeDetails_EmployeeDetails_OutputMessage">
     <wsdl:part name="parameters" element="tns:EmployeeDetailsResponse" />
   </wsdl:message>
+  <wsdl:message name="IGetEmployeeDetails_EmployeeDetailsByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:EmployeeDetailsByName" />
+  </wsdl:message>
+  <wsdl:message name="IGetEmployeeDetails_EmployeeDetailsByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EmployeeDetailsByNameResponse" />
+  </wsdl:message>
   <wsdl:message name="IGetEmployeeDetails_GetRemark_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRemark" />
   </wsdl:message>
@@ -481,6 +525,10 @@
     <wsdl:operation name="EmployeeDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/IGetEmployeeDetails/EmployeeDetails" message="tns:IGetEmployeeDetails_EmployeeDetails_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsResponse" message="tns:IGetEmployeeDetails_EmployeeDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EmployeeDetailsByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsByName" message="tns:IGetEmployeeDetails_EmployeeDetailsByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsByNameResponse" message="tns:IGetEmployeeDetails_EmployeeDetailsByName_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetRemark">
       <wsdl:input wsaw:Action="http://tempuri.org/IGetEmployeeDetails/GetRemark" message="tns:IGetEmployeeDetails_GetRemark_InputMessage" />
@@ -539,6 +587,17 @@
       </wsdl:input>
       <wsdl:output>
         <wsp:PolicyReference URI="#WSHttpBinding_IGetEmployeeDetails_EmployeeDetails_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EmployeeDetailsByName">
+      <soap12:operation soapAction="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsByName" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IGetEmployeeDetails_EmployeeDetailsByName_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IGetEmployeeDetails_EmployeeDetailsByName_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

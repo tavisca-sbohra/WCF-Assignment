@@ -8,41 +8,24 @@ using System.Text;
 
 namespace EmployeeManagementService
 {
-    //[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Single)]
     public class AddEmployee : IAddEmployee, IGetEmployeeDetails
     {
-        static List<Employee> _employeeList = new List<Employee>();
-        static List<Remarks> _remarksList = new List<Remarks>();
+        List<Employee> _employeeList = new List<Employee>();
+        List<Remarks> _remarksList = new List<Remarks>();
 
         public bool AddNew(int employeeId, string firstName, string lastName)
         {
-            if (employeeId <= 0 || employeeId==null)
+            if (_employeeList.Exists(x => x.EmployeeID == employeeId))
             {
-                throw new FaultException(new FaultReason("Id should be a positive number"), new FaultCode("101"));
+                throw new FaultException(new FaultReason("Employee Id already exists"), new FaultCode("102"));
             }
-            if (employeeId <= int.MaxValue)
-            {
-                if (_employeeList.Exists(x => x.EmployeeID == employeeId))
-                {
-                    throw new FaultException(new FaultReason("Employee Id already exists"), new FaultCode("102"));
-                }
-                if (firstName != null && firstName!="")
-                {
-                    Employee employee = new Employee();
-                    employee.EmployeeID = employeeId;
-                    employee.FirstName = firstName;
-                    employee.LastName = lastName;
-                    _employeeList.Add(employee);
-                    return true;
-                }
-                else
-                {
-                    throw new FaultException(new FaultReason("Employee entry should contain a name"), new FaultCode("108"));
-                }
-            }
-            else
-                return false;
-
+            Employee employee = new Employee();
+            employee.EmployeeID = employeeId;
+            employee.FirstName = firstName;
+            employee.LastName = lastName;
+            _employeeList.Add(employee);
+            return true;
         }
 
         public List<Employee> EmployeeList()
@@ -51,8 +34,8 @@ namespace EmployeeManagementService
             {
                 throw new FaultException(new FaultReason("Employee list is empty.Add employees to it  "), new FaultCode("103"));
             }
-                Console.WriteLine(_employeeList);
-                return _employeeList;
+            Console.WriteLine(_employeeList);
+            return _employeeList;
         }
 
         public bool AddRemark(int empID, string remarkText)
@@ -81,12 +64,12 @@ namespace EmployeeManagementService
 
         public Remarks GetRemark(int empID)
         {
-                if (_remarksList.Exists(x => x.EmployeeID == empID))
-                {
-                    Remarks remark = _remarksList.Find(x => x.EmployeeID == empID);
-                    return remark;
-                }
-                throw new FaultException(new FaultReason("That employee ID does not exist in the database"), new FaultCode("106"));
+            if (_remarksList.Exists(x => x.EmployeeID == empID))
+            {
+                Remarks remark = _remarksList.Find(x => x.EmployeeID == empID);
+                return remark;
+            }
+            throw new FaultException(new FaultReason("That employee ID does not exist in the database"), new FaultCode("106"));
         }
 
         public List<Remarks> GetAllRemarks()
@@ -97,7 +80,7 @@ namespace EmployeeManagementService
             }
             else
             {
-                throw new FaultException(new FaultReason("The remarks list is empty!!!!"),new FaultCode("105"));
+                throw new FaultException(new FaultReason("The remarks list is empty!!!!"), new FaultCode("105"));
             }
         }
 
@@ -108,13 +91,14 @@ namespace EmployeeManagementService
                 Employee employee = _employeeList.Find(x => x.EmployeeID == employeeId);
                 return employee;
             }
-            throw new FaultException(new FaultReason("That Employee Id does not exist!!! :O "), new FaultCode("104"));
+            else
+                throw new FaultException(new FaultReason("That Employee Id does not exist!!! :O "), new FaultCode("104"));
         }
 
         public List<Employee> EmployeeDetailsByName(string FirstName)
-        {  
+        {
             List<Employee> searchResults = new List<Employee>();
-            searchResults=  _employeeList.FindAll(x=>(x.FirstName.Equals(FirstName,StringComparison.InvariantCultureIgnoreCase)));
+            searchResults = _employeeList.FindAll(x => (x.FirstName.Equals(FirstName, StringComparison.InvariantCultureIgnoreCase)));
             if (searchResults.Any())
             {
                 foreach (var employee in _employeeList)
@@ -133,6 +117,6 @@ namespace EmployeeManagementService
         }
 
 
-       
+
     }
 }

@@ -143,16 +143,16 @@ namespace Client.DataManagementService {
     public interface IAddEmployee {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmployee/AddNew", ReplyAction="http://tempuri.org/IAddEmployee/AddNewResponse")]
-        void AddNew(int EmployeeID, string FirstName, string LastName);
+        bool AddNew(int EmployeeID, string FirstName, string LastName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmployee/AddNew", ReplyAction="http://tempuri.org/IAddEmployee/AddNewResponse")]
-        System.Threading.Tasks.Task AddNewAsync(int EmployeeID, string FirstName, string LastName);
+        System.Threading.Tasks.Task<bool> AddNewAsync(int EmployeeID, string FirstName, string LastName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmployee/AddRemark", ReplyAction="http://tempuri.org/IAddEmployee/AddRemarkResponse")]
-        void AddRemark(int EmployeeID, string Remark);
+        bool AddRemark(int EmployeeID, string Remark);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmployee/AddRemark", ReplyAction="http://tempuri.org/IAddEmployee/AddRemarkResponse")]
-        System.Threading.Tasks.Task AddRemarkAsync(int EmployeeID, string Remark);
+        System.Threading.Tasks.Task<bool> AddRemarkAsync(int EmployeeID, string Remark);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -182,19 +182,19 @@ namespace Client.DataManagementService {
                 base(binding, remoteAddress) {
         }
         
-        public void AddNew(int EmployeeID, string FirstName, string LastName) {
-            base.Channel.AddNew(EmployeeID, FirstName, LastName);
+        public bool AddNew(int EmployeeID, string FirstName, string LastName) {
+            return base.Channel.AddNew(EmployeeID, FirstName, LastName);
         }
         
-        public System.Threading.Tasks.Task AddNewAsync(int EmployeeID, string FirstName, string LastName) {
+        public System.Threading.Tasks.Task<bool> AddNewAsync(int EmployeeID, string FirstName, string LastName) {
             return base.Channel.AddNewAsync(EmployeeID, FirstName, LastName);
         }
         
-        public void AddRemark(int EmployeeID, string Remark) {
-            base.Channel.AddRemark(EmployeeID, Remark);
+        public bool AddRemark(int EmployeeID, string Remark) {
+            return base.Channel.AddRemark(EmployeeID, Remark);
         }
         
-        public System.Threading.Tasks.Task AddRemarkAsync(int EmployeeID, string Remark) {
+        public System.Threading.Tasks.Task<bool> AddRemarkAsync(int EmployeeID, string Remark) {
             return base.Channel.AddRemarkAsync(EmployeeID, Remark);
         }
     }
@@ -214,6 +214,12 @@ namespace Client.DataManagementService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetEmployeeDetails/EmployeeDetails", ReplyAction="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsResponse")]
         System.Threading.Tasks.Task<Client.DataManagementService.Employee> EmployeeDetailsAsync(int EmployeeID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsByName", ReplyAction="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsByNameResponse")]
+        Client.DataManagementService.Employee[] EmployeeDetailsByName(string FirstName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsByName", ReplyAction="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsByNameResponse")]
+        System.Threading.Tasks.Task<Client.DataManagementService.Employee[]> EmployeeDetailsByNameAsync(string FirstName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetEmployeeDetails/GetRemark", ReplyAction="http://tempuri.org/IGetEmployeeDetails/GetRemarkResponse")]
         Client.DataManagementService.Remarks GetRemark(int EmployeeID);
@@ -269,6 +275,14 @@ namespace Client.DataManagementService {
         
         public System.Threading.Tasks.Task<Client.DataManagementService.Employee> EmployeeDetailsAsync(int EmployeeID) {
             return base.Channel.EmployeeDetailsAsync(EmployeeID);
+        }
+        
+        public Client.DataManagementService.Employee[] EmployeeDetailsByName(string FirstName) {
+            return base.Channel.EmployeeDetailsByName(FirstName);
+        }
+        
+        public System.Threading.Tasks.Task<Client.DataManagementService.Employee[]> EmployeeDetailsByNameAsync(string FirstName) {
+            return base.Channel.EmployeeDetailsByNameAsync(FirstName);
         }
         
         public Client.DataManagementService.Remarks GetRemark(int EmployeeID) {
