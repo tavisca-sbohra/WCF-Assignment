@@ -173,14 +173,14 @@ namespace Test
         }
 
         [TestMethod]
-        public void GetAnEmployeeDetailsForValidInput()
+        public void GetAnEmployeeDetailsByEmpIdForValidInput()
         {
             Employee employee = _objGet.EmployeeDetails(1);
             Debug.WriteLine(employee.EmployeeID + ". " + employee.FirstName + " " + employee.LastName);
         }
 
         [TestMethod]
-        public void DetailsForEmployeeInexistentThrowsException()
+        public void DetailsForEmployeeInexistentThrowsExceptionSearchById()
         {
             try
             {
@@ -195,5 +195,39 @@ namespace Test
             }
         }
 
+        [TestMethod]
+        public void GetAnEmployeeDetailsByFirstNameForValidInput()
+        {
+            try
+            {
+                Employee[] employee = _objGet.EmployeeDetailsByName("nedd");
+                foreach (var r in employee)
+                {
+                    Debug.WriteLine(r.EmployeeID + ". " + r.FirstName + " " + r.LastName);
+                }
+            }
+            catch(FaultException e)
+            {
+                if(e.Code.Name=="107")
+                    Console.WriteLine("{0}", e.Reason);
+            }
+        }
+        [TestMethod]
+        public void GetAnEmployeeDetailsByFirstNameFoInNValidInputThrowsException()
+        {
+            try
+            {
+                Employee[] employee = _objGet.EmployeeDetailsByName("Dumbledore");
+                foreach (var r in employee)
+                {
+                    Debug.WriteLine(r.EmployeeID + ". " + r.FirstName + " " + r.LastName);
+                }
+            }
+            catch (FaultException e)
+            {
+                if (e.Code.Name == "107")
+                    Console.WriteLine("{0}", e.Reason);
+            }
+        }
     }
 }

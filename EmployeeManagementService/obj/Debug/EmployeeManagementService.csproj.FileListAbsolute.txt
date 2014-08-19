@@ -3,3 +3,8 @@ D:\shivangi\WCF\EmployeeManagementService\EmployeeManagementService\bin\Employee
 D:\shivangi\WCF\EmployeeManagementService\EmployeeManagementService\obj\Debug\EmployeeManagementService.csprojResolveAssemblyReference.cache
 D:\shivangi\WCF\EmployeeManagementService\EmployeeManagementService\obj\Debug\EmployeeManagementService.dll
 D:\shivangi\WCF\EmployeeManagementService\EmployeeManagementService\obj\Debug\EmployeeManagementService.pdb
+D:\shivangi\WCFAssignment\WCF-Assignment\EmployeeManagementService\obj\Debug\EmployeeManagementService.csprojResolveAssemblyReference.cache
+D:\shivangi\WCFAssignment\WCF-Assignment\EmployeeManagementService\obj\Debug\EmployeeManagementService.dll
+D:\shivangi\WCFAssignment\WCF-Assignment\EmployeeManagementService\obj\Debug\EmployeeManagementService.pdb
+D:\shivangi\WCFAssignment\WCF-Assignment\EmployeeManagementService\bin\EmployeeManagementService.dll
+D:\shivangi\WCFAssignment\WCF-Assignment\EmployeeManagementService\bin\EmployeeManagementService.pdb

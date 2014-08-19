@@ -97,6 +97,29 @@ namespace EmployeeManagementService
             }
             throw new FaultException(new FaultReason("That Employee Id does not exist!!! :O "), new FaultCode("104"));
         }
+
+        public List<Employee> EmployeeDetailsByName(string FirstName)
+        {  
+            List<Employee> searchResults = new List<Employee>();
+            searchResults=  _employeeList.FindAll(x=>(x.FirstName.Equals(FirstName,StringComparison.InvariantCultureIgnoreCase)));
+            if (searchResults.Any())
+            {
+                foreach (var employee in _employeeList)
+                {
+                    if (employee.FirstName == FirstName)
+                    {
+                        searchResults.Add(employee);
+                    }
+                }
+            }
+            else
+            {
+                throw new FaultException(new FaultReason("That Employee Name does not exist!!! :O "), new FaultCode("107"));
+            }
+            return searchResults;
+        }
+
+
        
     }
 }

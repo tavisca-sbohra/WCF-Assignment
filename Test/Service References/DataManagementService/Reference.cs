@@ -215,6 +215,12 @@ namespace Test.DataManagementService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetEmployeeDetails/EmployeeDetails", ReplyAction="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsResponse")]
         System.Threading.Tasks.Task<Test.DataManagementService.Employee> EmployeeDetailsAsync(int EmployeeID);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsByName", ReplyAction="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsByNameResponse")]
+        Test.DataManagementService.Employee[] EmployeeDetailsByName(string FirstName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsByName", ReplyAction="http://tempuri.org/IGetEmployeeDetails/EmployeeDetailsByNameResponse")]
+        System.Threading.Tasks.Task<Test.DataManagementService.Employee[]> EmployeeDetailsByNameAsync(string FirstName);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetEmployeeDetails/GetRemark", ReplyAction="http://tempuri.org/IGetEmployeeDetails/GetRemarkResponse")]
         Test.DataManagementService.Remarks GetRemark(int EmployeeID);
         
@@ -269,6 +275,14 @@ namespace Test.DataManagementService {
         
         public System.Threading.Tasks.Task<Test.DataManagementService.Employee> EmployeeDetailsAsync(int EmployeeID) {
             return base.Channel.EmployeeDetailsAsync(EmployeeID);
+        }
+        
+        public Test.DataManagementService.Employee[] EmployeeDetailsByName(string FirstName) {
+            return base.Channel.EmployeeDetailsByName(FirstName);
+        }
+        
+        public System.Threading.Tasks.Task<Test.DataManagementService.Employee[]> EmployeeDetailsByNameAsync(string FirstName) {
+            return base.Channel.EmployeeDetailsByNameAsync(FirstName);
         }
         
         public Test.DataManagementService.Remarks GetRemark(int EmployeeID) {

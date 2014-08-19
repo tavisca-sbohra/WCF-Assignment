@@ -26,6 +26,8 @@ namespace EmployeeManagementService
         [OperationContract]
         Employee EmployeeDetails(int EmployeeID);
         [OperationContract]
+        List<Employee> EmployeeDetailsByName(string FirstName);
+        [OperationContract]
         Remarks GetRemark(int EmployeeID);
         [OperationContract]
         List<Remarks> GetAllRemarks();

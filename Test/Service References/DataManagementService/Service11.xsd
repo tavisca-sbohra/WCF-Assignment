@@ -54,6 +54,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="EmployeeDetailsByName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EmployeeDetailsByNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EmployeeManagementService" minOccurs="0" name="EmployeeDetailsByNameResult" nillable="true" type="q3:ArrayOfEmployee" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetRemark">
     <xs:complexType>
       <xs:sequence>
@@ -64,7 +78,7 @@
   <xs:element name="GetRemarkResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EmployeeManagementService" minOccurs="0" name="GetRemarkResult" nillable="true" type="q3:Remarks" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/EmployeeManagementService" minOccurs="0" name="GetRemarkResult" nillable="true" type="q4:Remarks" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -76,7 +90,7 @@
   <xs:element name="GetAllRemarksResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/EmployeeManagementService" minOccurs="0" name="GetAllRemarksResult" nillable="true" type="q4:ArrayOfRemarks" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/EmployeeManagementService" minOccurs="0" name="GetAllRemarksResult" nillable="true" type="q5:ArrayOfRemarks" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
