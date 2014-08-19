@@ -14,7 +14,7 @@ namespace EmployeeManagementService
         static List<Employee> _employeeList = new List<Employee>();
         static List<Remarks> _remarksList = new List<Remarks>();
 
-        public void AddNew(int employeeId, string firstName, string lastName)
+        public bool AddNew(int employeeId, string firstName, string lastName)
         {
             if (employeeId <= 0 || employeeId==null)
             {
@@ -26,12 +26,22 @@ namespace EmployeeManagementService
                 {
                     throw new FaultException(new FaultReason("Employee Id already exists"), new FaultCode("102"));
                 }
-                Employee employee = new Employee();
-                employee.EmployeeID = employeeId;
-                employee.FirstName = firstName;
-                employee.LastName = lastName;
-                _employeeList.Add(employee);
+                if (firstName != null && firstName!="")
+                {
+                    Employee employee = new Employee();
+                    employee.EmployeeID = employeeId;
+                    employee.FirstName = firstName;
+                    employee.LastName = lastName;
+                    _employeeList.Add(employee);
+                    return true;
+                }
+                else
+                {
+                    throw new FaultException(new FaultReason("Employee entry should contain a name"), new FaultCode("108"));
+                }
             }
+            else
+                return false;
 
         }
 
@@ -45,9 +55,9 @@ namespace EmployeeManagementService
                 return _employeeList;
         }
 
-        public void AddRemark(int empID, string remarkText)
+        public bool AddRemark(int empID, string remarkText)
         {
-            if (empID!=null)
+            if (empID != null)
             {
                 if (!_remarksList.Exists(x => x.EmployeeID == empID))
                 {
@@ -63,7 +73,10 @@ namespace EmployeeManagementService
                     Remarks remark = _remarksList.Find(x => x.EmployeeID == empID);
                     remark.Remark += remarkText;
                 }
+                return true;
             }
+            else
+                return false;
         }
 
         public Remarks GetRemark(int empID)

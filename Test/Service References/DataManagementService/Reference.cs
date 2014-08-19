@@ -143,16 +143,16 @@ namespace Test.DataManagementService {
     public interface IAddEmployee {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmployee/AddNew", ReplyAction="http://tempuri.org/IAddEmployee/AddNewResponse")]
-        void AddNew(int EmployeeID, string FirstName, string LastName);
+        bool AddNew(int EmployeeID, string FirstName, string LastName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmployee/AddNew", ReplyAction="http://tempuri.org/IAddEmployee/AddNewResponse")]
-        System.Threading.Tasks.Task AddNewAsync(int EmployeeID, string FirstName, string LastName);
+        System.Threading.Tasks.Task<bool> AddNewAsync(int EmployeeID, string FirstName, string LastName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmployee/AddRemark", ReplyAction="http://tempuri.org/IAddEmployee/AddRemarkResponse")]
-        void AddRemark(int EmployeeID, string Remark);
+        bool AddRemark(int EmployeeID, string Remark);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddEmployee/AddRemark", ReplyAction="http://tempuri.org/IAddEmployee/AddRemarkResponse")]
-        System.Threading.Tasks.Task AddRemarkAsync(int EmployeeID, string Remark);
+        System.Threading.Tasks.Task<bool> AddRemarkAsync(int EmployeeID, string Remark);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -182,19 +182,19 @@ namespace Test.DataManagementService {
                 base(binding, remoteAddress) {
         }
         
-        public void AddNew(int EmployeeID, string FirstName, string LastName) {
-            base.Channel.AddNew(EmployeeID, FirstName, LastName);
+        public bool AddNew(int EmployeeID, string FirstName, string LastName) {
+            return base.Channel.AddNew(EmployeeID, FirstName, LastName);
         }
         
-        public System.Threading.Tasks.Task AddNewAsync(int EmployeeID, string FirstName, string LastName) {
+        public System.Threading.Tasks.Task<bool> AddNewAsync(int EmployeeID, string FirstName, string LastName) {
             return base.Channel.AddNewAsync(EmployeeID, FirstName, LastName);
         }
         
-        public void AddRemark(int EmployeeID, string Remark) {
-            base.Channel.AddRemark(EmployeeID, Remark);
+        public bool AddRemark(int EmployeeID, string Remark) {
+            return base.Channel.AddRemark(EmployeeID, Remark);
         }
         
-        public System.Threading.Tasks.Task AddRemarkAsync(int EmployeeID, string Remark) {
+        public System.Threading.Tasks.Task<bool> AddRemarkAsync(int EmployeeID, string Remark) {
             return base.Channel.AddRemarkAsync(EmployeeID, Remark);
         }
     }

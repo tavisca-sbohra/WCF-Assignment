@@ -15,219 +15,125 @@ namespace Test
         [TestMethod]
         public void AddEmployeeToList()
         {
-            try
-            {
-                _objAdd.AddNew(1, "Khalisee", "Mother Of Dragons");
-                _objAdd.AddNew(2, "Arya", "Stark");
-                _objAdd.AddNew(3, "Khalisee", "");
-                _objAdd.AddNew(6, "Nedd", "Stark");
-               
-
-            }
-            catch (FaultException e)
-            {
-                Debug.WriteLine("dbfbsdf"+e.Code.Name); 
-                if (e.Code.Name == "101")
-                {
-                    Console.WriteLine("{0}", e.Reason);
-                }
-            }
+            Assert.IsTrue(_objAdd.AddNew(1, "Khalisee", "Mother Of Dragons"), "Added Khalisee");
+            Assert.IsTrue(_objAdd.AddNew(2, "Arya", "Stark"), "Added Arya ");
+            Assert.IsTrue(_objAdd.AddNew(6, "Nedd", "Stark"), "Added nedd");
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException))]
+        public void AddEmployeeEntryWithNullValueInName()
+        {
+            Assert.IsTrue(_objAdd.AddNew(90,"",""), "This should throw an exception Yo");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FaultException))]
         public void AddEmployeeWithSameEmployeeIdToList()
         {
-            try
-            {
-                _objAdd.AddNew(1, "John", "Snow");
-            }
-            catch (FaultException e)
-            {
-                if (e.Code.Name == "102")
-                {
-                    Console.WriteLine("{0}", e.Reason);
-                }
-            }
+            Assert.IsTrue(_objAdd.AddNew(1, "John", "Snow"), "This should throw an exception Yo");
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException))]
         public void AddNegativeEmployeeIdToList()
         {
-            try
-            {
-                _objAdd.AddNew(-1, "", "");
-
-            }
-            catch (FaultException e)
-            {
-                if (e.Code.Name == "101")
-                {
-                    Console.WriteLine("{0}", e.Reason);
-                }
-            }
-
+                Assert.IsTrue(_objAdd.AddNew(-1, "", ""),"This should throw an exception Yo");
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException))]
         public void AddZeroEmployeeIdToList()
         {
-            try
-            {
-                _objAdd.AddNew(0, "KK", "PJ");
-
-            }
-            catch (FaultException e)
-            {
-                if (e.Code.Name == "101")
-                {
-                    Console.WriteLine("{0}", e.Reason);
-                }
-            }
+            Assert.IsTrue(_objAdd.AddNew(0, "KK", "PJ"), "This should throw an exception Yo");
         }
 
         [TestMethod]
         public void ReteiveEmployeListExceptionIfTheListIsEmpty()
         {
-            try
-            {
-                Employee[] empList = _objGet.EmployeeList();
-                if (empList.Length > 0)
-                {
+                    Employee[] empList = _objGet.EmployeeList();
+                    Assert.IsNotNull(empList, "Employee List is not empty");
                     foreach (var employee in empList)
                     {
                         Debug.WriteLine(employee.EmployeeID + ". " + employee.FirstName + " " + employee.LastName);
                     }
-                }
-            }
-            catch (FaultException e)
-            {
-                if (e.Code.Name == "103")
-                {
-                    Console.WriteLine("{0}", e.Reason);
-                }
-            }
         }
 
         [TestMethod]
         public void AddRemarkToEmployee()
         {
-            _objAdd.AddRemark(1, "This employee is diligent . Top Class");
-          
+                Assert.IsTrue(_objAdd.AddRemark(1, "This employee is diligent . Top Class"),"Added Remark To Employee");
         }
 
         [TestMethod]
         public void AddRemarkToEmployeeIdthatDoesNotExist()
         {
-            _objAdd.AddRemark(1000, "This exmployeeNme doesnt EXIST .");
-
+            Assert.IsTrue(_objAdd.AddRemark(1000, "This exmployeeName doesnt EXIST ."), "Addeed remark for employee that does not exist :P");
         }
+
         [TestMethod]
         public void AppendRemarkToAnExistingRemark()
         {
-            _objAdd.AddRemark(1, "Knows c# well");
-          
+            Assert.IsTrue(_objAdd.AddRemark(1, "Knows c# well"), "appended remark on employee with employee id 1");
         }
 
         [TestMethod]
         public void GetRemarksByEmployeeID()
         {
             Remarks remark = _objGet.GetRemark(1);
-            Debug.WriteLine("Date and time:" + remark.DateTimeNow + "Remark:" + remark.Remark);
+            Assert.IsNotNull(remark, "Date and time:" + remark.DateTimeNow + "Remark:" + remark.Remark);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException))]
         public void GetRemarksByEmployeeIdThatDoesNotExistThrowsException()
         {
-            try
-            {
                 Remarks remark = _objGet.GetRemark(100);
-            }
-            catch (FaultException e)
-            {
-                if (e.Code.Name == "106")
-                {
-                    Console.WriteLine("{0}",e.Reason);
-                }
-            }
+                Assert.IsNull(remark, "Remark on this employee Id deos nto exist");
         }
 
         [TestMethod]
         public void GetAllRemarksAlsoEThrowsExceptionIfRemarksListIsEmpty()
         {
-            try
-            {
                 Remarks[] remarks = _objGet.GetAllRemarks();
-
+                Assert.IsNotNull(remarks, "The remarks list is not empty.the reamrks are:");
                 foreach (var r in remarks)
                 {
                     Debug.WriteLine(r.EmployeeID + ". " + r.DateTimeNow + " " + r.Remark);
                 }
-            }
-            catch(FaultException e)
-            {
-                if (e.Code.Name == "105")
-                {
-                    Console.WriteLine("{0}",e.Reason);
-                }
-            }
         }
 
         [TestMethod]
         public void GetAnEmployeeDetailsByEmpIdForValidInput()
         {
             Employee employee = _objGet.EmployeeDetails(1);
-            Debug.WriteLine(employee.EmployeeID + ". " + employee.FirstName + " " + employee.LastName);
+            Assert.IsNotNull(employee, employee.EmployeeID + ". " + employee.FirstName + " " + employee.LastName);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(FaultException))]
         public void DetailsForEmployeeInexistentThrowsExceptionSearchById()
         {
-            try
-            {
                 Employee employee = _objGet.EmployeeDetails(0);
-            }
-            catch (FaultException e)
-            {
-                if (e.Code.Name == "104")
-                {
-                    Console.WriteLine("{0}", e.Reason);
-                }
-            }
+                Assert.IsNull(employee, "Told you ,this was null but there should have been an exception :/");
         }
 
         [TestMethod]
         public void GetAnEmployeeDetailsByFirstNameForValidInput()
         {
-            try
-            {
                 Employee[] employee = _objGet.EmployeeDetailsByName("nedd");
+                Assert.IsNotNull(employee, "employee with the name nedd exisits");
                 foreach (var r in employee)
                 {
                     Debug.WriteLine(r.EmployeeID + ". " + r.FirstName + " " + r.LastName);
                 }
-            }
-            catch(FaultException e)
-            {
-                if(e.Code.Name=="107")
-                    Console.WriteLine("{0}", e.Reason);
-            }
         }
         [TestMethod]
+        [ExpectedException(typeof(FaultException))]
         public void GetAnEmployeeDetailsByFirstNameFoInNValidInputThrowsException()
         {
-            try
-            {
                 Employee[] employee = _objGet.EmployeeDetailsByName("Dumbledore");
-                foreach (var r in employee)
-                {
-                    Debug.WriteLine(r.EmployeeID + ". " + r.FirstName + " " + r.LastName);
-                }
-            }
-            catch (FaultException e)
-            {
-                if (e.Code.Name == "107")
-                    Console.WriteLine("{0}", e.Reason);
-            }
+                Assert.IsNull(employee,"dumbledore is not im employee list");
         }
     }
 }

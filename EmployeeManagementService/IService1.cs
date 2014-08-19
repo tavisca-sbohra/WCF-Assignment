@@ -12,10 +12,10 @@ namespace EmployeeManagementService
     public interface IAddEmployee
     {
         [OperationContract]
-        void  AddNew(int EmployeeID,string FirstName,string LastName);
+        bool  AddNew(int EmployeeID,string FirstName,string LastName);
 
         [OperationContract]
-        void AddRemark(int EmployeeID,string Remark);
+        bool AddRemark(int EmployeeID,string Remark);
     }
 
     [ServiceContract]

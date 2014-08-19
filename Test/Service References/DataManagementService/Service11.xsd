@@ -12,7 +12,9 @@
   </xs:element>
   <xs:element name="AddNewResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddNewResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddRemark">
@@ -25,7 +27,9 @@
   </xs:element>
   <xs:element name="AddRemarkResponse">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddRemarkResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EmployeeList">
