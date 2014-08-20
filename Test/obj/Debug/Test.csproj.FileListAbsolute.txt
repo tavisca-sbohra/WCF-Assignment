@@ -9,3 +9,4 @@ D:\shivangi\WCFAssignment\WCF-Assignment\Test\bin\Debug\Test.dll
 D:\shivangi\WCFAssignment\WCF-Assignment\Test\bin\Debug\Test.pdb
 D:\shivangi\WCFAssignment\WCF-Assignment\Test\obj\Debug\Test.dll
 D:\shivangi\WCFAssignment\WCF-Assignment\Test\obj\Debug\Test.pdb
+D:\shivangi\WCFAssignment\WCF-Assignment\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache

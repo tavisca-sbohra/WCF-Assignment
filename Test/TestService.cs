@@ -14,6 +14,37 @@ namespace Test
         AddEmployeeClient _objAdd = new AddEmployeeClient();
         GetEmployeeDetailsClient _objGet = new GetEmployeeDetailsClient();
 
+        private TestContext testContextInstance;
+
+       public TestContext TestContext
+        {
+            get { return testContextInstance; }
+            set { testContextInstance = value; }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FaultException))]
+        [DeploymentItem(@"D:\shivangi\WCFAssignment\WCF-Assignment\Test\DataInput.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML",
+                   @"D:\shivangi\WCFAssignment\WCF-Assignment\Test\DataInput.xml",
+                   "Employee",
+                    DataAccessMethod.Sequential)
+        ]
+        public void TryCreateEmployeeFromXml()
+        {
+            var id = Int32.Parse(testContextInstance.DataRow["EmployeeId"].ToString());
+            var firstName = testContextInstance.DataRow["EmployeeFirstName"].ToString();
+            var lastName = testContextInstance.DataRow["EmployeeLastName"].ToString();
+            var remark = testContextInstance.DataRow["Remark"].ToString();
+
+            using (var client = new AddEmployeeClient())
+            {
+                bool isAdded = client.AddNew(id, firstName,lastName);
+                bool addedRemerk = client.AddRemark(id, remark);
+                Assert.IsTrue(isAdded, "xml Read");
+            }
+        }
+
         [TestMethod]
         [ExpectedException(typeof(FaultException))]
         public void AddEmployeeToList()
@@ -26,28 +57,29 @@ namespace Test
         [ExpectedException(typeof(FaultException))]
         public void AddEmployeeEntryWithNullValueInName()
         {
-            Assert.IsTrue(_objAdd.AddNew(90, "", ""), "This should throw an exception Yo");
+            Assert.IsTrue(_objAdd.AddNew(90, "", ""), "This should throw an exception ");
         }
 
         [TestMethod]
         [ExpectedException(typeof(FaultException))]
         public void AddEmployeeWithSameEmployeeIdToList()
         {
-            Assert.IsTrue(_objAdd.AddNew(1, "John", "Snow"), "This should throw an exception Yo");
+            Assert.IsTrue(_objAdd.AddNew(1, "John", "Snow"), "This should throw an exception");
         }
+
 
         [TestMethod]
         [ExpectedException(typeof(FaultException))]
         public void AddNegativeEmployeeIdToList()
         {
-            Assert.IsTrue(_objAdd.AddNew(-1, "", ""), "This should throw an exception Yo");
+            Assert.IsTrue(_objAdd.AddNew(-1, "", ""), "This should throw an exception");
         }
 
         [TestMethod]
         [ExpectedException(typeof(FaultException))]
         public void AddZeroEmployeeIdToList()
         {
-            Assert.IsTrue(_objAdd.AddNew(0, "KK", "PJ"), "This should throw an exception Yo");
+            Assert.IsTrue(_objAdd.AddNew(0, "KK", "PJ"), "This should throw an exception");
         }
 
         [TestMethod]
